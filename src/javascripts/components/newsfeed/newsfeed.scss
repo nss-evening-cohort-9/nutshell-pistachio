@@ -1,0 +1,34 @@
+.news-section{
+  width: 75%;
+  height: 50%;
+  border: 2px solid red;
+}
+
+newsfeed-con{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.article-card{
+  background-color: grey;
+  color: black;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 8em;
+  font-size: .25vw;
+}
+
+.article-img{
+  width: 0 auto;
+  max-width: 12em;
+  object-fit: contain;
+  justify-self: flex-start;
+  height: 100%;
+  margin-right: 5%; 
+}
+
+.article-link{
+  font-size: 1vw;
+  color: aliceblue;
+}

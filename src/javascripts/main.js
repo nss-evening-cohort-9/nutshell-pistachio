@@ -11,6 +11,7 @@ import '../styles/main.scss';
 const init = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
   auth.signInUser();
+  auth.checkLoginStatus();
 };
 
 init();
