@@ -1,13 +1,40 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-const signIn = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
-};
+import newsfeed from '../newsfeed/newsfeed';
 
 const signInUser = () => {
-  document.getElementById('signInBtn').addEventListener('click', signIn);
+  document.getElementById('signInBtn').addEventListener('click', () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
+  });
 };
 
-export default { signInUser };
+const signOutUser = () => {
+  firebase.auth().signOut();
+};
+
+const checkLoginStatus = () => {
+  const signInBtn = document.getElementById('signInBtn');
+  const signOutBtn = document.getElementById('signOutBtn');
+  const dropdownBtn = document.getElementById('dropdownBtn');
+  const app = document.getElementById('app');
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.error('Logged In');
+      signInBtn.classList.add('hide');
+      signOutBtn.classList.remove('hide');
+      dropdownBtn.classList.remove('hide');
+      app.classList.remove('hide');
+      newsfeed.loadArticles();
+      signOutBtn.addEventListener('click', signOutUser);
+    } else {
+      console.error('Logged Out');
+      signOutBtn.classList.add('hide');
+      signInBtn.classList.remove('hide');
+      app.classList.add('hide');
+    }
+  });
+};
+
+export default { signInUser, checkLoginStatus };

@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Test</title>
-</head>
-<body>
-  <button class="btn btn-danger" id="signInBtn">Google Login</button>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+  </head>
+
+  <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Nutshell</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item dropdown hide" id="dropdownBtn">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Navigation
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">News</a>
+                  <a class="dropdown-item" href="#">Events</a>
+                  <a class="dropdown-item" href="#">Messages</a>
+                  <a class="dropdown-item" href="#">Diary</a>
+                </div>
+              </li>
+            </ul>
+              <button class="btn btn-inline btn-outline-success" id="signInBtn">Login</button>
+              <button class="btn btn-inline btn-outline-danger hide" id="signOutBtn">Logout</button>
+          </div>
+        </nav>
+
+  <div class="app hide" id="app">
+    <div class="news-section" id="newsSection">
+      <p><h6>Newsfeed</h6></p>
+      <div id="newsfeedCon" class="newsfeed-con"></div>
+    </div>
+  </div>
+    
+  </body>
 </html>

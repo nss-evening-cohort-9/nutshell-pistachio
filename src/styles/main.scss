@@ -1,5 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 
+@import "../javascripts/components/newsfeed/newsfeed.scss";
+
 body {
-  background-color: blue;
+  background-color: darkslategray;
+}
+
+.hide {
+  display: none;
 }

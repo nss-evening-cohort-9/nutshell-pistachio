@@ -1,0 +1,20 @@
+{
+  "article0":{
+    "uid": "article0Uid",
+    "imgUrl": "https://cdn.cnn.com/cnnnext/dam/assets/190607063317-russian-destroyer-admiral-vinogradov-file-restricted-exlarge-169.jpg",
+    "articleUrl": "https://www.cnn.com/2019/06/07/politics/us-russia-navy-near-collision-intl/index.html",
+    "title": "US and Russian warships nearly collide in the Pacific"
+  },
+  "article1":{
+    "uid": "article1Uid",
+    "imgUrl": "https://thehardtimes.net/wp-content/uploads/2018/08/legs.jpg",
+    "articleUrl": "https://thehardtimes.net/culture/punk-attempting-to-make-cutoffs-accidentally-performs-double-amputation/",
+    "title": "Punk Attempting to Make Cutoffs Accidentally Performs Double Amputation"
+  },
+  "article2":{
+    "uid": "article2Uid",
+    "imgUrl": "https://thehardtimes.net/wp-content/uploads/2018/04/29995924_10155418048817963_2103235566_o.jpg",
+    "articleUrl": "https://thehardtimes.net/hardstyle/uh-oh-myspace-just-sold-all-the-data-about-your-emo-phase-to-the-russians/",
+    "title": "Uh Oh: Myspace Just Sold All the Data About Your Emo Phase to the Russians"
+  }
+}
