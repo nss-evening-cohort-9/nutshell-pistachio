@@ -17,7 +17,7 @@ const printArticle = (array) => {
 const loadArticles = () => {
   newsfeedData.getNews().then((resp) => {
     printArticle(resp);
-  }).catch(err => console.error('error from loadArticles', err));
+  }).catch(err => console.error(err));
 };
 
 export default { loadArticles };
