@@ -1,6 +1,19 @@
 import util from '../../helpers/util';
 import eventsData from '../../helpers/data/eventsData';
 
+const createNewEvent = (e) => {
+  e.preventDefault();
+  const newEvent = {
+    eName: document.getElementById('event-name').value,
+    location: document.getElementById('event-location').value,
+
+
+  }
+}
+
+
+
+
 const printEvents = (array) => {
   let domString = '';
   array.forEach((event) => {

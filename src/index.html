@@ -44,7 +44,20 @@
     <div class="events-section" id="eventsSection">
       <p><h6>Events</h6></p>
       <div id="events" class="events-list"></div>
+      <div id="new-event" class="hide">
+          <form class="col-6 offset-3">
+              <div class="form-group">
+                <label for="name">Movie</label>
+                <input type="text" class="form-control" id="event-name" placeholder="Event name">
+                <input type="text" class="form-control" id="event-date" placeholder="mm/dd/yyyy">
+                <input type="text" class="form-control" id="event-location" placeholder="Event locaton">
+              </div>
+              <button type="submit" id="saveNewEvent" class="btn btn-primary">Add Event</button>
+            </form>
+
+      </div>
     </div>
+
   </div>
 
   </body>
