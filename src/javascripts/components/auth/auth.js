@@ -29,7 +29,7 @@ const checkLoginStatus = () => {
       dropdownBtn.classList.remove('hide');
       app.classList.remove('hide');
       newsfeed.loadArticles();
-      events.loadEvents();
+      events.loadEvents(user.uid);
       messages.loadMessages();
       signOutBtn.addEventListener('click', signOutUser);
     } else {
