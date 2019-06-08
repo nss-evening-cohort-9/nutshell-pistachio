@@ -1,0 +1,26 @@
+{
+  "event0":{
+    "uid": "event0Uid",
+    "eName": "Captain D's launch party",
+    "location": "Captain D's",
+    "date": "June 7, 2019",
+    "time": "6:30 pm",
+    "note": "Bring your own krispies"
+  },
+  "event1":{
+    "uid": "event1Uid",
+    "eName": "Eucalyptus social",
+    "location": "Koala's House",
+    "date": "June 8, 2019",
+    "time": "4:30 pm",
+    "note": "Serious leaf chewers only"
+  },
+  "event2":{
+    "uid": "event2Uid",
+    "eName": "Meeting with the feds",
+    "location": "The feds' house",
+    "date": "June 9, 2019",
+    "time": "5:30 pm",
+    "note": "Never let 'em see you sweat"
+  }
+}
