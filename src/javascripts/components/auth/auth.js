@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 
 import newsfeed from '../newsfeed/newsfeed';
+import events from '../events/events';
 
 const signInUser = () => {
   document.getElementById('signInBtn').addEventListener('click', () => {
@@ -27,6 +28,7 @@ const checkLoginStatus = () => {
       dropdownBtn.classList.remove('hide');
       app.classList.remove('hide');
       newsfeed.loadArticles();
+      events.loadEvents();
       signOutBtn.addEventListener('click', signOutUser);
     } else {
       console.error('Logged Out');
