@@ -6,6 +6,8 @@ import Axios from 'axios';
 import newsfeed from '../newsfeed/newsfeed';
 import userData from '../../helpers/data/userData';
 import apiKeys from '../../helpers/apiKeys.json';
+import events from '../events/events';
+import messages from '../messages/messages';
 
 const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
@@ -52,6 +54,8 @@ const checkLoginStatus = () => {
       dropdownBtn.classList.remove('hide');
       app.classList.remove('hide');
       newsfeed.loadArticles();
+      events.loadEvents(user.uid);
+      messages.loadMessages();
       signOutBtn.addEventListener('click', signOutUser);
     } else {
       console.error('Logged Out');
