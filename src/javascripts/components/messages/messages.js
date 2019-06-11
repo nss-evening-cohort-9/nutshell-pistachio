@@ -20,7 +20,7 @@ const createNewMessage = (e) => {
   e.preventDefault();
   const newMessage = {
     time: document.getElementById('msg-time').value,
-    text: document.getElementById('msg-text').value,
+    message: document.getElementById('msg-text').value,
     uid: firebase.auth().currentUser.uid,
   };
   messagesData.addNewMessage(newMessage)
@@ -29,8 +29,7 @@ const createNewMessage = (e) => {
       document.getElementById('msg-text').value = '';
       document.getElementById('messages').classList.remove('hide');
       document.getElementById('add-message').classList.add('hide');
-      console.error(newMessage.uid);
-      loadMessages(); // eslint-disable-line no-use-before-define
+      loadMessages(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
     })
     .catch(err => console.error('no new message for you', err));
 };
@@ -43,11 +42,11 @@ const showNewMessageForm = () => {
 document.getElementById('add-message').addEventListener('click', showNewMessageForm);
 document.getElementById('saveNewMessage').addEventListener('click', createNewMessage);
 
-const loadMessages = (uid) => {
-  messagesData.getMessagesByUid(uid).then((resp) => {
+const loadMessages = () => {
+  messagesData.getMessages().then((resp) => {
     printMessages(resp);
   }).catch(err => console.error('error from loadMessages', err));
-  console.error(uid);
+  console.error();
 };
 
 
