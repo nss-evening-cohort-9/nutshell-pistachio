@@ -22,6 +22,33 @@ const signOutUser = () => {
   firebase.auth().signOut();
 };
 
+const displaySections = () => {
+  const newsBtn = document.getElementById('newsBtn');
+  const eventsBtn = document.getElementById('eventsBtn');
+  const messagesBtn = document.getElementById('messagesBtn');
+  const newsSection = document.getElementById('newsSection');
+  const eventsSection = document.getElementById('eventsSection');
+  const messagesSection = document.getElementById('messagesSection');
+  newsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    newsSection.classList.remove('hide');
+    eventsSection.classList.add('hide');
+    messagesSection.classList.add('hide');
+  });
+  eventsBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    newsSection.classList.add('hide');
+    eventsSection.classList.remove('hide');
+    messagesSection.classList.add('hide');
+  });
+  messagesBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    newsSection.classList.add('hide');
+    eventsSection.classList.add('hide');
+    messagesSection.classList.remove('hide');
+  });
+};
+
 const firstTimeLogin = (user) => {
   const newUser = {
     uid: `${user.uid}`,
@@ -32,10 +59,10 @@ const firstTimeLogin = (user) => {
   userData.getUids().then((resp) => {
     const filteredUid = resp.filter(userId => userId === currentUid);
     if (filteredUid.length < 1) {
-      console.error(filteredUid, 'New user added to Firebase');
+      console.error('New user added to Firebase');
       Axios.post(`${firebaseUrl}/user.json`, newUser);
     } else if (filteredUid.length >= 1) {
-      console.error('User already Registered', filteredUid);
+      console.error('User already Registered');
     }
   });
 };
@@ -57,6 +84,7 @@ const checkLoginStatus = () => {
       events.loadEvents(user.uid);
       messages.loadMessages();
       signOutBtn.addEventListener('click', signOutUser);
+      displaySections();
     } else {
       console.error('Logged Out');
       signOutBtn.classList.add('hide');
