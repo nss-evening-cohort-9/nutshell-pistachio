@@ -3,22 +3,6 @@ import 'firebase/auth';
 import util from '../../helpers/util';
 import eventsData from '../../helpers/data/eventsData';
 
-
-const printEvents = (array) => {
-  let domString = '';
-  array.forEach((event) => {
-    domString += `<div id="${event.uid}" class="card" style="width: 18rem;">`;
-    domString += '<div class="card-body">';
-    domString += `<h5 class="card-title">${event.eName}</h5>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.location}</h6>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.date}</h6>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>`;
-    domString += `<p class="card-text">Note to self: ${event.note}</p>`;
-    domString += '</div>';
-  });
-  util.printToDom('events', domString);
-};
-
 const createNewEvent = (e) => {
   e.preventDefault();
   const newEvent = {
@@ -43,14 +27,69 @@ const createNewEvent = (e) => {
     .catch(err => console.error('no new event for you', err));
 };
 
+const deleteEventEvent = (e) => {
+  const eventId = e.target.id;
+  eventsData.deleteEvent(eventId)
+    .then(() => loadEvents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .catch(err => console.error('no delete for you', err));
+};
+
+const editEventEvent = (e) => {
+  // eslint-disable-next-line prefer-destructuring
+  const cardToEdit = e.target.closest('.card');
+  const { id } = cardToEdit;
+  cardToEdit.querySelector()
+  eventsData.getSingleEvent(id)
+    .then((data) => {
+      console.error(data);
+      // document.getElementById('event-name').value = data.eName;
+      // document.getElementById('event-location').value = '';
+      // document.getElementById('event-date').value = '';
+      // document.getElementById('event-time').value = '';
+      // document.getElementById('event-note').value = '';
+      // document.getElementById('events').classList.remove('hide');
+      // document.getElementById('add-event').classList.add('hide');
+      loadEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
+    })
+    .catch(err => console.error('no single event for you', err));
+};
+
+const eventEvents = () => {
+  document.getElementById('saveNewEvent').addEventListener('click', createNewEvent);
+  const deleteButtons = document.getElementsByClassName('delete-event');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteEventEvent);
+  }
+  const editButtons = document.getElementsByClassName('edit-event');
+  for (let j = 0; j < editButtons.length; j += 1) {
+    editButtons[j].addEventListener('click', editEventEvent);
+  }
+};
+
+const printEvents = (array) => {
+  let domString = '';
+  array.forEach((event) => {
+    domString += `<div id="${event.id}" class="card" style="width: 18rem;">`;
+    domString += '<div class="card-body">';
+    domString += `<h5 class="card-title">${event.eName}</h5>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.location}</h6>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.date}</h6>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>`;
+    domString += `<p class="card-text">Note to self: ${event.note}</p>`;
+    domString += `<button type="button" id="${event.id}" class="btn btn-danger delete-event">Delete</button>`;
+    domString += `<button type="button" id="edit.${event.id}" class= "btn btn-primary edit edit-event">Edit</button>`;
+    domString += '</div>';
+  });
+  util.printToDom('events', domString);
+  eventEvents();
+};
+
 const showNewEventForm = () => {
   document.getElementById('events').classList.add('hide');
   document.getElementById('new-event').classList.remove('hide');
 };
 
 document.getElementById('add-event').addEventListener('click', showNewEventForm);
-document.getElementById('saveNewEvent').addEventListener('click', createNewEvent);
-
 
 // const showEvents = () => {
 //   const domString = '<button id="add-events-button" class="btn btn-info">Add Event</button>';
@@ -58,11 +97,13 @@ document.getElementById('saveNewEvent').addEventListener('click', createNewEvent
 //   document.getElementById('add-events-button').addEventListener('click', newEventButton);
 // };
 
+// const updateEvent
+
+
 const loadEvents = (uid) => {
   eventsData.getEventsByUid(uid).then((resp) => {
     printEvents(resp);
   }).catch(err => console.error('error from loadEvents', err));
-  console.error(uid);
 };
 
 export default { loadEvents };
