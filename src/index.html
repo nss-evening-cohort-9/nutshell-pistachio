@@ -24,13 +24,16 @@
                   Navigation
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">News</a>
-                  <a class="dropdown-item" href="#">Events</a>
-                  <a class="dropdown-item" href="#">Messages</a>
-                  <a class="dropdown-item" href="#">Diary</a>
+                  <a class="dropdown-item" id="newsBtn" href="#">News</a>
+                  <a class="dropdown-item" id="eventsBtn" href="#">Events</a>
+                  <a class="dropdown-item" id="messagesBtn" href="#">Messages</a>
+                  <a class="dropdown-item" id="diaryBtn" href="#">Diary</a>
                 </div>
               </li>
             </ul>
+            <form>
+              <button class="btn btn-outline-success" id="username" data-toggle="modal" data-target="#userNameModal">Set User Name</button>
+            </form>
               <button class="btn btn-inline btn-outline-success" id="signInBtn">Login</button>
               <button class="btn btn-inline btn-outline-danger hide" id="signOutBtn">Logout</button>
           </div>
@@ -43,6 +46,7 @@
       <p><h6>Newsfeed</h6></p>
       <div id="newsfeedCon" class="newsfeed-con"></div>
     </div>
+
     <div class="events-section" id="eventsSection">
       <p><h6>Events</h6></p>
       <div id="events" class="events-list"></div>
