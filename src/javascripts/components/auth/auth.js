@@ -30,7 +30,7 @@ const checkLoginStatus = () => {
       app.classList.remove('hide');
       newsfeed.loadArticles();
       events.loadEvents(user.uid);
-      messages.loadMessages();
+      messages.loadMessages(user.uid);
       signOutBtn.addEventListener('click', signOutUser);
     } else {
       console.error('Logged Out');
