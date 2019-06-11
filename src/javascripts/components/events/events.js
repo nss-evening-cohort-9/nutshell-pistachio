@@ -38,20 +38,15 @@ const editEventEvent = (e) => {
   // eslint-disable-next-line prefer-destructuring
   const cardToEdit = e.target.closest('.card');
   const { id } = cardToEdit;
-  cardToEdit.querySelector()
-  eventsData.getSingleEvent(id)
-    .then((data) => {
-      console.error(data);
-      // document.getElementById('event-name').value = data.eName;
-      // document.getElementById('event-location').value = '';
-      // document.getElementById('event-date').value = '';
-      // document.getElementById('event-time').value = '';
-      // document.getElementById('event-note').value = '';
-      // document.getElementById('events').classList.remove('hide');
-      // document.getElementById('add-event').classList.add('hide');
-      loadEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
-    })
-    .catch(err => console.error('no single event for you', err));
+  cardToEdit.querySelector('.note');
+  // document.getElementById('event-name').value = data.eName;
+  // document.getElementById('event-location').value = '';
+  // document.getElementById('event-date').value = '';
+  // document.getElementById('event-time').value = '';
+  // document.getElementById('event-note').value = '';
+  // document.getElementById('events').classList.remove('hide');
+  // document.getElementById('add-event').classList.add('hide');
+  // eslint-disable-line no-use-before-define
 };
 
 const eventEvents = () => {
@@ -72,10 +67,10 @@ const printEvents = (array) => {
     domString += `<div id="${event.id}" class="card" style="width: 18rem;">`;
     domString += '<div class="card-body">';
     domString += `<h5 class="card-title">${event.eName}</h5>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.location}</h6>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.date}</h6>`;
-    domString += `<h6 class="card-subtitle mb-2 text-muted">${event.time}</h6>`;
-    domString += `<p class="card-text">Note to self: ${event.note}</p>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted location">${event.location}</h6>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted date">${event.date}</h6>`;
+    domString += `<h6 class="card-subtitle mb-2 text-muted time">${event.time}</h6>`;
+    domString += `<p class="card-text note">${event.note}</p>`;
     domString += `<button type="button" id="${event.id}" class="btn btn-danger delete-event">Delete</button>`;
     domString += `<button type="button" id="edit.${event.id}" class= "btn btn-primary edit edit-event">Edit</button>`;
     domString += '</div>';
