@@ -77,7 +77,10 @@ const updateButtonEvent = (e) => {
     uid: firebase.auth().currentUser.uid,
   };
   eventsData.updateEvent(eventId, editEvent)
-    .then(() => loadEvents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .then(() => {
+      loadEvents(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
+      document.getElementById('edit-event').classList.add('hide');
+    })
     .catch(err => console.error('no update for you', err));
 };
 
@@ -91,7 +94,7 @@ const eventEvents = () => {
   for (let j = 0; j < editButtons.length; j += 1) {
     editButtons[j].addEventListener('click', editEventEvent);
   }
-  const submitButton = document.getElementById('updateNewEvent');
+  const submitButton = document.getElementById('updateNewEventButton');
   submitButton.addEventListener('click', updateButtonEvent);
   // document.getElementsByClassName('edit').addEventListener('click', showUpdateEventForm);
 };
