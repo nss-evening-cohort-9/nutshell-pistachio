@@ -36,10 +36,23 @@ const deleteEventEvent = (e) => {
 
 const editEventEvent = (e) => {
   // eslint-disable-next-line prefer-destructuring
-  const cardToEdit = e.target.closest('.card');
-  const { id } = cardToEdit;
-  cardToEdit.querySelector('.note');
-  // document.getElementById('event-name').value = data.eName;
+  const cardToEdit = e.target.closest('.card').id;
+  eventsData.singleEventById(cardToEdit)
+    .then((resp) => {
+      const event = resp.data;
+      document.getElementById('update-event-name').value = event.eName;
+      document.getElementById('update-event-location').value = event.location;
+      document.getElementById('update-event-date').value = event.date;
+      document.getElementById('update-event-time').value = event.time;
+      document.getElementById('update-event-note').value = event.note;
+      document.getElementById('update-event-note').closest('form').id = cardToEdit;
+      document.getElementById('edit-event').classList.remove('hide');
+    })
+    .catch(err => console.error('no edit for you', err));
+  // const { id } = cardToEdit;
+  // cardToEdit.querySelector('.note');
+
+  // document.getElementById('event-name').value = id.eName;
   // document.getElementById('event-location').value = '';
   // document.getElementById('event-date').value = '';
   // document.getElementById('event-time').value = '';
@@ -47,6 +60,25 @@ const editEventEvent = (e) => {
   // document.getElementById('events').classList.remove('hide');
   // document.getElementById('add-event').classList.add('hide');
   // eslint-disable-line no-use-before-define
+};
+// const showUpdateEventForm = () => {
+
+// };
+
+const updateButtonEvent = (e) => {
+  e.preventDefault();
+  const eventId = e.target.closest('form').id;
+  const editEvent = {
+    eName: document.getElementById('update-event-name').value,
+    location: document.getElementById('update-event-location').value,
+    date: document.getElementById('update-event-date').value,
+    time: document.getElementById('update-event-time').value,
+    note: document.getElementById('update-event-note').value,
+    uid: firebase.auth().currentUser.uid,
+  };
+  eventsData.updateEvent(eventId, editEvent)
+    .then(() => loadEvents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .catch(err => console.error('no update for you', err));
 };
 
 const eventEvents = () => {
@@ -59,6 +91,9 @@ const eventEvents = () => {
   for (let j = 0; j < editButtons.length; j += 1) {
     editButtons[j].addEventListener('click', editEventEvent);
   }
+  const submitButton = document.getElementById('updateNewEvent');
+  submitButton.addEventListener('click', updateButtonEvent);
+  // document.getElementsByClassName('edit').addEventListener('click', showUpdateEventForm);
 };
 
 const printEvents = (array) => {
@@ -72,7 +107,7 @@ const printEvents = (array) => {
     domString += `<h6 class="card-subtitle mb-2 text-muted time">${event.time}</h6>`;
     domString += `<p class="card-text note">${event.note}</p>`;
     domString += `<button type="button" id="${event.id}" class="btn btn-danger delete-event">Delete</button>`;
-    domString += `<button type="button" id="edit.${event.id}" class= "btn btn-primary edit edit-event">Edit</button>`;
+    domString += '<button type="button" class="btn btn-primary edit-event">Edit</button>';
     domString += '</div>';
   });
   util.printToDom('events', domString);
