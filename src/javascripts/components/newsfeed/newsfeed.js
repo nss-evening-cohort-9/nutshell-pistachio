@@ -1,6 +1,13 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import Axios from 'axios';
+
 import util from '../../helpers/util';
 
 import newsfeedData from '../../helpers/data/newsfeedData';
+import apiKeys from '../../helpers/apiKeys.json';
+
+const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 
 const printArticle = (array) => {
   let st = '';
@@ -32,4 +39,25 @@ const loadArticles = () => {
   }).catch(err => console.error(err));
 };
 
-export default { loadArticles };
+const addArticle = (e) => {
+  e.preventDefault();
+  const user = firebase.auth().currentUser.uid;
+  const formUrl = document.getElementById('addArticleFormUrl').value;
+  const formTitle = document.getElementById('addArticleFormTitle').value;
+  const formImg = document.getElementById('addArticleFormImage').value;
+  const formText = document.getElementById('articleText').value;
+  const newArtAr = [];
+
+  const newArt = {
+    uid: `${user}`,
+    imgUrl: `${formImg}`,
+    articleUrl: `${formUrl}`,
+    title: `${formTitle}`,
+    text: `${formText}`,
+  };
+
+  newArtAr.push(newArt);
+  Axios.post(`${firebaseUrl}/news.json`, newArt).then(() => loadArticles());
+};
+
+export default { loadArticles, addArticle };
