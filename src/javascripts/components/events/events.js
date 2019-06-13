@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import util from '../../helpers/util';
@@ -30,7 +31,7 @@ const createNewEvent = (e) => {
 const deleteEventEvent = (e) => {
   const eventId = e.target.id;
   eventsData.deleteEvent(eventId)
-    .then(() => loadEvents(firebase.auth().currentUser.uid)) // eslint-disable-line no-use-before-define
+    .then(() => loadEvents(firebase.auth().currentUser.uid))
     .catch(err => console.error('no delete for you', err));
 };
 
