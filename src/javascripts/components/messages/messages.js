@@ -1,8 +1,22 @@
+import axios from 'axios';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import apiKeys from '../../helpers/apiKeys.json';
 import util from '../../helpers/util';
 import messagesData from '../../helpers/data/messagesData';
 
+const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
+
+const deleteMessage = messageId => axios.delete(`${firebaseUrl}/messages/${messageId}.json`);
+
+const deleteMessageEvent = (e) => {
+  e.preventDefault();
+  const messageId = e.target.parentNode.id;
+  console.error(messageId);
+  deleteMessage(messageId).then(() => {
+    loadMessages(); // eslint-disable-line no-use-before-define
+  });
+};
 
 const printMessages = (array) => {
   let st = '';
@@ -10,6 +24,16 @@ const printMessages = (array) => {
     st += '<form>';
     st += `<div id="${msg.id}" class="card">`;
     st += `${msg.message}`;
+    if (msg.uid === firebase.auth().currentUser.uid) {
+      st += `
+        <button class="editMessage pt-1 ml-2" id=${msg.id}>Edit</button>
+        <button class="deleteMessage pt-1 ml-2" id=${msg.id}>Delete</button>
+      </div>`;
+      // if they are not signed in, the edit and delete buttons will not show up and
+      // they are unable to edit or delete
+    } else {
+      st += '</p></div>';
+    }
     st += '</div>';
     st += '</form>';
   });
@@ -48,6 +72,11 @@ const loadMessages = () => {
   }).catch(err => console.error('error from loadMessages', err));
   console.error();
 };
+
+const deleteBtns = document.getElementsByClassName('delete-btn');
+for (let i = 0; i < deleteBtns.length; i += 1) {
+  deleteBtns[i].addEventListener('click', deleteMessageEvent);
+}
 
 
 export default { loadMessages };
