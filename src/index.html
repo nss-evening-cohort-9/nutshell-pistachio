@@ -76,9 +76,9 @@
       <div id="new-event" class="hide">
           <form class="col-6 offset-3">
               <div class="form-group">
-                <label for="name">Movie</label>
+                <label for="name">Add new event</label>
                 <input type="text" class="form-control" id="event-name" placeholder="Event name">
-                <input type="text" class="form-control" id="event-location" placeholder="Event locaton">
+                <input type="text" class="form-control" id="event-location" placeholder="Event location">
                 <input type="text" class="form-control" id="event-date" placeholder="mm/dd/yyyy">
                 <input type="text" class="form-control" id="event-time" placeholder="Event time">
                 <input type="text" class="form-control" id="event-note" placeholder="Event note">
@@ -87,7 +87,20 @@
             </form>
 
       </div>
-      <button type="submit" id="add-event" class="btn btn-primary">Add Event</button></button>
+      <div id="edit-event" class="hide">
+          <form class="col-6 offset-3">
+              <div class="form-group">
+                <label for="name">Update event</label>
+                <input type="text" class="form-control" id="update-event-name" placeholder="Event name">
+                <input type="text" class="form-control" id="update-event-location" placeholder="Event location">
+                <input type="text" class="form-control" id="update-event-date" placeholder="mm/dd/yyyy">
+                <input type="text" class="form-control" id="update-event-time" placeholder="Event time">
+                <input type="text" class="form-control" id="update-event-note" placeholder="Event note">
+              </div>
+              <button type="submit" id="updateNewEventButton" class="btn btn-primary">Update Event</button>
+          </form>
+      </div>
+      <button type="submit" id="add-event" class="btn btn-primary">Add Event</button>
     </div>
     <div class="messages-section" id="messagesSection">
       <p><h6>Messages</h6></p>
