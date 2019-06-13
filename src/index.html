@@ -66,40 +66,105 @@
   <div class="app hide" id="app">
     <div class="news-section" id="newsSection">
 
-      <p><h4>Newsfeed</h4></p>
-
+      <h2>Newsfeed</h2>
       <div class="newsfeed-btns">
-          <button type="button" class="newsfeed-add-btn btn btn-outline-success" id="newsfeedAddBtn" data-toggle="modal" data-target="#addArticleModal">Add an Article</button>
+        <button type="button" class="newsfeed-add-btn btn btn-outline-success" id="newsfeedAddBtn" data-toggle="modal" data-target="#saveArticleModal">Save an Article</button>
+        <button type="button" class="newsfeed-add-btn btn btn-outline-success" id="newsfeedPublishBtn" data-toggle="modal" data-target="#publishArticleModal">Publish an Article</button>
       </div>
-      <div id="newsfeedCon" class="newsfeed-con"></div>
 
-      <div class="modal fade add-article-modal" id="addArticleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+      <!-- PUBLISHED ARTICLES PRINT HERE -->
+      <div id="mainNewsCon" class="main-news-con">
+
+        <div id="publishedNews" class="published-news">
+          <h4 class="news-header">Headlines</h4>
+          <div id="newsfeedCon" class="newsfeed-con"></div>
+        </div>
+
+        <div id="savedNews" class="saved-news">
+          <h4 id='savedHeader' class="hide news-header">Saved Articles</h4>
+          <!-- SAVED ARTICLES PRINT HERE -->
+          <div id="userNewsCon"></div>
+        </div>
+
+      </div>
+      <!-- SAVE ARTICLE MODAL -->
+      <div class="modal fade save-article-modal" id="saveArticleModal" tabindex="-1" role="dialog" aria-labelledby="saveArticleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content text-white bg-dark">
               <div class="modal-header">
-                <h5 class="modal-title" id="articleModalLabel">Add An Article</h5>
+                <h5 class="modal-title" id="saveArticleModalLabel" data-dismiss="modal">Save An Article</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <form>
+                <form id="saveArtForm">
                     <div class="form-group article-input">
-                      <input type="text" class="form-control col add-article-form" id="addArticleFormUrl" placeholder="Article URL">
-                      <input type="text" class="form-control col add-article-form" id="addArticleFormTitle" placeholder="Article Title">
-                      <input type="text" class="form-control col add-article-form" id="addArticleFormImage" placeholder="Article Image URL">
-                      <textarea class="form-control" id="articleText" placeholder="Write Your Article Here"></textarea>
+                      <input type="text" class="form-control col save-article-form" id="saveArticleFormTitle" placeholder="Article Title" required>
+                      <input type="text" class="form-control col save-article-form" id="saveArticleFormUrl" placeholder="Article URL" required>
+                      <input type="text" class="form-control col save-article-form" id="saveArticleFormImage" placeholder="Article Image URL">
+                      <input type="submit" value="Submit" name="submit" class="btn btn-secondary" id="saveArticleBtn"></input>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                   </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="addArticleModalBtn">Add Article</button>
               </div>
             </div>
           </div>
-        </div>
+      </div>
+
+      <!-- PUBLISH ARTICLE MODAL -->
+      <div class="modal fade publish-article-modal" id="publishArticleModal" tabindex="-1" role="dialog" aria-labelledby="publishArticleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-white bg-dark">
+              <div class="modal-header">
+                <h5 class="modal-title" id="publishArticleModalLabel" data-dismiss="modal">Publish An Article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="publishArticleForm">
+                    <div class="form-group article-input">
+                      <input type="text" class="form-control col publish-article-form" id="publishArticleFormTitle" placeholder="Article Title" required>
+                      <input type="text" class="form-control col publish-article-form" id="publishArticleFormImage" placeholder="Article Image URL">
+                      <textarea class="form-control col publish-article-form" id="articleText" placeholder="Write Your Article Here" required></textarea>
+                      <input type="submit" value="Submit" name="submit" class="btn btn-secondary" id="publishArticleBtn"></input>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- CONFIRM DELETE MODAL -->
+      <div class="modal fade" id="confirmDelMod" tabindex="-1" role="dialog" aria-labelledby="confirmDelModLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content text-white bg-dark">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmDelModLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this article?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="confirmDeleteBtn">Delete</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
     </div>
+
+
 
     <div class="events-section" id="eventsSection">
       <p><h6>Events</h6></p>
