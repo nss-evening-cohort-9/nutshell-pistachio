@@ -17,6 +17,21 @@ const getMessages = () => new Promise((resolve, reject) => {
     })
     .catch(err => reject(err));
 });
+
+const singleMessageById = id => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/messages/${id}.json`)
+    .then((resp) => {
+      resolve(resp);
+    })
+    .catch(err => reject(err));
+});
+
 const addNewMessage = messageObject => axios.post(`${firebaseUrl}/messages.json`, messageObject);
 
-export default { getMessages, addNewMessage };
+const deleteMessage = messageId => axios.delete(`${firebaseUrl}/messages/${messageId}.json`);
+
+const updateMessage = (messageId, eventObj) => axios.put(`${firebaseUrl}/messages/${messageId}.json`, eventObj);
+
+export default {
+  getMessages, addNewMessage, deleteMessage, singleMessageById, updateMessage,
+};
