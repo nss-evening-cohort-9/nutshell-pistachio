@@ -71,6 +71,7 @@ const checkLoginStatus = () => {
   const signInBtn = document.getElementById('signInBtn');
   const signOutBtn = document.getElementById('signOutBtn');
   const dropdownBtn = document.getElementById('dropdownBtn');
+  const addArticleBtn = document.getElementById('addArticleModalBtn');
   const app = document.getElementById('app');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -84,6 +85,7 @@ const checkLoginStatus = () => {
       events.loadEvents(user.uid);
       messages.loadMessages(user.uid);
       signOutBtn.addEventListener('click', signOutUser);
+      addArticleBtn.addEventListener('click', newsfeed.addArticle);
       displaySections();
     } else {
       console.error('Logged Out');

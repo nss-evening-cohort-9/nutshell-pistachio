@@ -64,8 +64,40 @@
 
   <div class="app hide" id="app">
     <div class="news-section" id="newsSection">
-      <p><h6>Newsfeed</h6></p>
+
+      <p><h4>Newsfeed</h4></p>
+
+      <div class="newsfeed-btns">
+          <button type="button" class="newsfeed-add-btn btn btn-outline-success" id="newsfeedAddBtn" data-toggle="modal" data-target="#addArticleModal">Add an Article</button>
+      </div>
       <div id="newsfeedCon" class="newsfeed-con"></div>
+
+      <div class="modal fade add-article-modal" id="addArticleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="articleModalLabel">Add An Article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                    <div class="form-group article-input">
+                      <input type="text" class="form-control col add-article-form" id="addArticleFormUrl" placeholder="Article URL">
+                      <input type="text" class="form-control col add-article-form" id="addArticleFormTitle" placeholder="Article Title">
+                      <input type="text" class="form-control col add-article-form" id="addArticleFormImage" placeholder="Article Image URL">
+                      <textarea class="form-control" id="articleText" placeholder="Write Your Article Here"></textarea>
+                    </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addArticleModalBtn">Add Article</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <div class="events-section" id="eventsSection">
