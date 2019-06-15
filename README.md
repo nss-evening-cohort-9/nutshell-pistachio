@@ -15,4 +15,4 @@ git clone git@github.com:nss-evening-cohort-9/nutshell-pistachio.git
 
 # Screenshot
 
-![Nusthell-Pistachio](https://raw.githubusercontent.com/wchipchase/nusthell-pistachio/setup/screenshots/nutshell1.JPG "Nutshell-pistachio")
+![Nusthell-Pistachio](https://github.com/nss-evening-cohort-9/nutshell-pistachio/blob/master/src/screenshots/nutshell1.JPG "Nutshell-pistachio")
