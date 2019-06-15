@@ -22,8 +22,8 @@ const deleteMessageEvent = (e) => {
 const printMessages = (array) => {
   let st = '';
   array.forEach((msg) => {
-    st += '<form>';
-    st += `<div id="${msg.id}" class="card">`;
+    st += `<form id=form${msg.id}>`;
+    st += `<div id="card${msg.id}" class="card">`;
     st += `${msg.message}`;
     if (msg.uid === firebase.auth().currentUser.uid) {
       st += `
@@ -67,6 +67,7 @@ const createNewMessage = (e) => {
 const editMessageEvent = (e) => {
   // eslint-disable-next-line prefer-destructuring
   const cardToEdit = e.target.closest('.card').id;
+  e.preventDefault();
   messagesData.singleMessageById(cardToEdit)
     .then((resp) => {
       const message = resp.data;
@@ -74,6 +75,7 @@ const editMessageEvent = (e) => {
       document.getElementById('update-message-text').value = message.text;
       document.getElementById('update-message-text').closest('form').id = cardToEdit;
       document.getElementById('editMessage').classList.remove('hide');
+      document.getElementById('edit-message').remove('hide');
     })
     .catch(err => console.error('no edit for you', err));
 };
