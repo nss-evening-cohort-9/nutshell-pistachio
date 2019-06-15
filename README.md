@@ -1,7 +1,7 @@
-# nutshell-pistachio
+# Nutshell-Pistachio
 The purpose of this application is to communicate in various ways. It has the following components: A newsfeed from which articles can be added and deleted, an event planner that allows events to be planned and edited, and a message component that allows messages to be posted to the app/page wall.
 
-# description
+# Description
 This demonstrates the usage of a firebase backend with full CRUD. This also demonstrates promises.
 
 # Installation
