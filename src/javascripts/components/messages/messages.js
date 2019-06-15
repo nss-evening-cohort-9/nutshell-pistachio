@@ -39,6 +39,7 @@ const printMessages = (array) => {
     st += '</form>';
   });
   util.printToDom('messages', st);
+  messageEvents();
   const deleteBtns = document.getElementsByClassName('deleteMessage');
   for (let i = 0; i < deleteBtns.length; i += 1) {
     deleteBtns[i].addEventListener('click', deleteMessageEvent);
@@ -63,39 +64,50 @@ const createNewMessage = (e) => {
     .catch(err => console.error('no new message for you', err));
 };
 
-// const editMessageEvent = (e) => {
-//   // eslint-disable-next-line prefer-destructuring
-//   const cardToEdit = e.target.closest('.card').id;
-//   messagesData.singleMessageById(cardToEdit)
-//     .then((resp) => {
-//       const event = resp.data;
-//       document.getElementById('update-event-name').value = event.eName;
-//       document.getElementById('update-event-location').value = event.location;
-//       document.getElementById('update-event-date').value = event.date;
-//       document.getElementById('update-event-time').value = event.time;
-//       document.getElementById('update-event-note').value = event.note;
-//       document.getElementById('update-event-note').closest('form').id = cardToEdit;
-//       document.getElementById('edit-event').classList.remove('hide');
-//     })
-//     .catch(err => console.error('no edit for you', err));
-// };
+const editMessageEvent = (e) => {
+  // eslint-disable-next-line prefer-destructuring
+  const cardToEdit = e.target.closest('.card').id;
+  messagesData.singleMessageById(cardToEdit)
+    .then((resp) => {
+      const message = resp.data;
+      document.getElementById('update-message-time').value = message.time;
+      document.getElementById('update-message-text').value = message.text;
+      document.getElementById('update-message-text').closest('form').id = cardToEdit;
+      document.getElementById('editMessage').classList.remove('hide');
+    })
+    .catch(err => console.error('no edit for you', err));
+};
 
-// const updateButtonMessage = (e) => {
-//   e.preventDefault();
-//   const messageId = e.target.closest('form').id;
-//   const editMessage = {
-//     time: document.getElementById('update-message-time').value,
-//     text: document.getElementById('update-message-text').value,
-//     uid: firebase.auth().currentUser.uid,
-//   };
-//   messagesData.updateMessage(messageId, editMessage)
-//     .then(() => {
-//       loadMessages(firebase.auth().currentUser.uid);
-//       document.getElementById('edit-message').classList.add('hide');
-//     })
-//     .catch(err => console.error('no update for you', err));
-// };
+const updateButtonMessage = (e) => {
+  e.preventDefault();
+  const messageId = e.target.closest('form').id;
+  const editMessage = {
+    time: document.getElementById('update-message-time').value,
+    text: document.getElementById('update-message-text').value,
+    uid: firebase.auth().currentUser.uid,
+  };
+  messagesData.updateEvent(messageId, editMessage)
+    .then(() => {
+      loadMessages(firebase.auth().currentUser.uid); // eslint-disable-line no-use-before-define
+      document.getElementById('editMessage').classList.add('hide');
+    })
+    .catch(err => console.error('no update for you', err));
+};
 
+const messageEvents = () => {
+  document.getElementById('saveNewMessage').addEventListener('click', createNewMessage);
+  const deleteButtons = document.getElementsByClassName('delete-message');
+  for (let i = 0; i < deleteButtons.length; i += 1) {
+    deleteButtons[i].addEventListener('click', deleteMessageEvent);
+  }
+  const editButtons = document.getElementsByClassName('editMessage');
+  for (let j = 0; j < editButtons.length; j += 1) {
+    editButtons[j].addEventListener('click', editMessageEvent);
+  }
+  const submitButton = document.getElementById('updateNewMessageButton');
+  submitButton.addEventListener('click', updateButtonMessage);
+  // document.getElementsByClassName('edit').addEventListener('click', showUpdateEventForm);
+};
 
 const showNewMessageForm = () => {
   document.getElementById('messages').classList.add('hide');
