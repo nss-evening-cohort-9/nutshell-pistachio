@@ -13,7 +13,7 @@ git clone git@github.com:nss-evening-cohort-9/nutshell-pistachio.git
 * After you're invited to the project, copy and paste API information per API keys src/javascripts/helpers/apiKeysExample.json file.
 * npm start
 
-# Screenshot
+# Screenshots
 
 ![Nusthell-Pistachio](https://github.com/nss-evening-cohort-9/nutshell-pistachio/blob/master/src/screenshots/nutshell1.JPG "Nutshell-pistachio")
 
