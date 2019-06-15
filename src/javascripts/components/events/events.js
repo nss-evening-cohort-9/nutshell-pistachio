@@ -103,7 +103,7 @@ const eventEvents = () => {
 const printEvents = (array) => {
   let domString = '';
   array.forEach((event) => {
-    domString += `<div id="${event.id}" class="card" style="width: 18rem;">`;
+    domString += `<div id="${event.id}" class="card event-card" style="width: 20rem;">`;
     domString += '<div class="card-body">';
     domString += `<h5 class="card-title">${event.eName}</h5>`;
     domString += `<h6 class="card-subtitle mb-2 text-muted location">${event.location}</h6>`;

@@ -1,0 +1,19 @@
+.events-section {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: left;
+  background-color: rgba(33, 54, 33, 0.473);
+
+}
+
+.events-header {
+  text-align: center;
+  border: black 1px solid;
+}
+
+.event-card {
+  margin: 3px;
+  // max-width: 50em;
+  // max-height: 25em;
+  border: .25em rgba(128, 128, 128, 0.445) outset;
+}

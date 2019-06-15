@@ -1,0 +1,11 @@
+.messages-section {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: left;
+  background-color: rgba(33, 54, 33, 0.473);
+}
+
+.messages-header {
+    text-align: center;
+    border: black 1px solid;
+  }
