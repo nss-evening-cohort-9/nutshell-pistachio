@@ -8,10 +8,10 @@ This demonstrates the usage of a firebase backend with full CRUD. This also demo
 git clone git@github.com:nss-evening-cohort-9/nutshell-pistachio.git
 
 # Get Started
-cd nutshell-pistachio
-npm install
-After you're invited to the project, copy and paste API information per API keys src/javascripts/helpers/apiKeysExample.json file.
-npm start
+* cd nutshell-pistachio
+* npm install
+* After you're invited to the project, copy and paste API information per API keys src/javascripts/helpers/apiKeysExample.json file.
+* npm start
 
 # Screenshot
 
